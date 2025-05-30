@@ -1,1 +1,2 @@
-Hello world!
+Java Text based stream example
+추가 문자열을 기록합니다
