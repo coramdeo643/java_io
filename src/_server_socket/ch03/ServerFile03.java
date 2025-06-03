@@ -15,31 +15,22 @@ public class ServerFile03 {
         try {
             serverSocket = new ServerSocket(5000);
             Socket clientSocket = serverSocket.accept();
-            System.out.println("Client connected");
             BufferedReader reader =
                     new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            System.out.println("Client connected");
             String msg;
+            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
             System.out.println("Client connected");
             while ((msg = reader.readLine()) != null) {
-                System.out.println("Message : " + msg);
+                System.out.println("Client : " + msg);
+                System.out.print("Me : ");
+                String response = scanner.nextLine();
+                writer.write("\uD83D\uDE0E "+response + "\n");
+                writer.flush();
+                if ("exit".equalsIgnoreCase(msg)) {
+                    break;
+                }
             }
 
-
-//            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
-//            String response;
-//            response = scanner.nextLine();
-//            writer.write(response);
-//            writer.flush();
-
-            //while (true) {
-//                if ("exit".equalsIgnoreCase(msg)) {
-//                    break;
-//                }
-//                if(msg==null) {
-//                    break;
-//                }
-            //}
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {

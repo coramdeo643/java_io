@@ -15,29 +15,21 @@ public class ClientFile03 {
             socket = new Socket("localhost", 5000);
             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
             String msg;
-            msg = scanner.nextLine();
+            BufferedReader reader =
+                    new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String response;
             while (true) {
+                System.out.print("Me : ");
+                msg = scanner.nextLine();
                 writer.write(msg+"\n");
                 writer.flush();
                 if ("exit".equalsIgnoreCase(msg)) {
                     break;
                 }
+                response = reader.readLine();
+                System.out.println("Server : "+response);
             }
 
-            BufferedReader reader =
-                    new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String response;
-            response = reader.readLine();
-            System.out.println(response+"read");
-            //System.out.println("From server : " + response);
-            //while (true) {
-//                if ("exit".equalsIgnoreCase(msg)) {
-//                    break;
-//                }
-//                if(response==null) {
-//                    break;
-//                }
-            //}
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
