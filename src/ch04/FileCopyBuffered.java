@@ -4,13 +4,12 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.security.spec.RSAOtherPrimeInfo;
 
 public class FileCopyBuffered {
     public static void main(String[] args) {
         //파일 경로 지정
-        String sourceFilePath = "employees.zip";
-        String destinationFilePath = "employees_copy22.zip";
+        String sourceFilePath = "a.txt";
+        String destinationFilePath = "b.txt";
         // 소요시간 측정
         long startT= System.nanoTime();
 
@@ -22,6 +21,7 @@ public class FileCopyBuffered {
             int data;
             while ((data = bfis.read(bytes)) != -1) {
                 bfos.write(bytes, 0, data);
+                System.out.print(".");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -26,6 +26,8 @@ public class ClientFile03 {
                 if ("exit".equalsIgnoreCase(msg)) {
                     break;
                 }
+            }
+            while (true) {
                 response = reader.readLine();
                 System.out.println("Server : "+response);
             }
