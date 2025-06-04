@@ -11,7 +11,7 @@ public class MultiThreadClient {
         System.out.println("= = = = Client = = = =");
         Socket socket = null;
         try {
-            socket = new Socket("localhost", 5000);
+            socket = new Socket("192.168.0.132", 5000);
             System.out.println("> > > > Connected to Server < < < <");
             // Stream setting to connect to server
             // to send letters to server
@@ -42,7 +42,7 @@ public class MultiThreadClient {
                 try {
                     String clientMsg;
                     while ((clientMsg = keyboardReader.readLine()) != null) {
-                        writerStream.println("Me : "+clientMsg);
+                        writerStream.println(clientMsg);
                         writerStream.flush();
                     }
                 } catch (IOException e) {
