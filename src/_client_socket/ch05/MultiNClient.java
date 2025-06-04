@@ -21,7 +21,7 @@ public class MultiNClient {
 
     // Method - Connect to port 5000 Server
     private void connectToServer() throws IOException {
-        socket = new Socket("192.168.0.132", 5000);
+        socket = new Socket("localhost", 5000);
         System.out.println(" = connected to the server");
     }
 
