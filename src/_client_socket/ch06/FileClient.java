@@ -35,7 +35,6 @@ public class FileClient {
 
     /**
      * 키보드에서 파일 경로를 입력 받아서 서버로 파일 보내기
-     *
      * @throws IOException
      */
     private void uploadFile() throws IOException {
