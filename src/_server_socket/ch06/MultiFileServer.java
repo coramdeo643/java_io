@@ -34,6 +34,9 @@ public class MultiFileServer {
                 int bytesRead;
                 while ((bytesRead = in.read(buffer)) != -1) {
                     fos.write(buffer, 0, bytesRead);
+                    if(bytesRead < 4096) {
+                        break;
+                    }
                 }
                 System.out.println(filename + " saved");
                 out.write("File".getBytes());

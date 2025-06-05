@@ -11,12 +11,13 @@ import java.util.Scanner;
 public class FileClient {
 
     private static final int PORT = 5000;
-    private static final String address = "192.168.0.80"; // 192.168.0.132.
+    private static final String address = "localhost"; // 192.168.0.132.
     private final String name;
     private Socket socket;
     private OutputStream out;
     private InputStream in;
     private final Scanner scanner = new Scanner(System.in);
+    private static boolean flag = true;
 
     public FileClient(String name) {
         this.name = name;
@@ -35,7 +36,7 @@ public class FileClient {
 
     /**
      * 키보드에서 파일 경로를 입력 받아서 서버로 파일 보내기
-     * @throws IOException
+     * throws IOException
      */
     private void uploadFile() throws IOException {
         System.out.println("File Path : ");
@@ -45,6 +46,9 @@ public class FileClient {
         File file = new File(filePath);
         if (!file.exists() && file.isFile()) {
             System.out.println("No file is here");
+            return;
+        } else if ("exit".equals(filePath)) {
+            flag = false;
             return;
         }
         // code
@@ -77,7 +81,7 @@ public class FileClient {
             }
             out.flush(); // 다 보냈음
 
-            // 서버측에 바이트를 다 받ㅂ으면 메세지를 보내기로함
+            // 서버측에 바이트를 다 받으면 메세지를 보내기로함
             byte[] responseBuffer = new byte[1024];
             int responseLength = in.read(responseBuffer);
             String response = new String(responseBuffer, 0, responseLength);
@@ -114,6 +118,8 @@ public class FileClient {
     // main
     public static void main(String[] args) {
         FileClient fileClient = new FileClient("A");
-        fileClient.fileSendRun();
+        while (flag) {
+            fileClient.fileSendRun();
+        }
     }
 } // end of class

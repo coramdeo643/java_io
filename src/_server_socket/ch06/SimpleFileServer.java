@@ -32,6 +32,9 @@ public class SimpleFileServer {
             // EOF = end of file = -1
             while ((bytesRead = in.read(buffer)) != -1) {
                 fos.write(buffer, 0, bytesRead);
+                if(bytesRead < 4096) {
+                    break;
+                }
             }
             System.out.println("Save completed in the Server_com" + filename);
             out.write("File upload completed : ".getBytes());
