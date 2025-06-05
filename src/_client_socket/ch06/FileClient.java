@@ -7,6 +7,7 @@ import java.util.Scanner;
 /**
  * 1:1 socket file client
  */
+// C:\employees.zip
 public class FileClient {
 
     private static final int PORT = 5000;
